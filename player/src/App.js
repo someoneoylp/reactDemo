@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 import Header from './components/header/header';
 import MusicList from './components/content/musicList.js';
 import Personal from './components/content/personal.js';
 import Player from './components/content/player.js';
 import Sidebar from './components/sidebar/sidebar.js';
-import classnames from 'classnames'
+import classNames from 'classnames'
 import loading from './image/loading.gif';
 
 
@@ -26,22 +26,20 @@ class App extends Component {
     }
   }
   componentDidMount() {
-      console.log("componentDidMount调用")
-    //组件加载完毕调用，设置loading
-   
-    // this.setState({
-    //     isLoading : false
-    // })
+    this.setState({
+        isLoading: false
+    })
   }
   render() {
-    var loadingClass = classnames({
-        "isShow" : this.state.isLoading
+    var loadingClass = classNames({
+        "isShow" : this.state.isLoading,
+        "loading": false
     });
     return (
       <div className="App">
         <HashRouter>
             <div className="wrapper">
-                <img src={loading} className={loadingClass} />
+                <img src={loading} className={ loadingClass } />
                 <div className="header">
                     <div class="func">
                         <Link to="/sidebar">
@@ -73,9 +71,9 @@ class App extends Component {
                     </div> 
                 </div>
                 <div className="content">
-                    <Route exact path="/musicList" component={MusicList} />
-                    <Route path="/Personal" component={Personal} />
-                    <Route path="/Player" component={Player} />
+                    <Route exact path="/musicList" component={ MusicList } />
+                    <Route path="/Personal" component={ Personal } />
+                    <Route path="/Player" component={ Player } />
                 </div>
                 <div className="footer">
                   F
