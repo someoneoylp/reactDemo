@@ -6,23 +6,24 @@ import MusicList from './components/content/musicList.js';
 import Personal from './components/content/personal.js';
 import Player from './components/content/player.js';
 import Sidebar from './components/sidebar/sidebar.js';
-import classNames from 'classnames'
+import classNames from 'classnames';
 import loading from './image/loading.gif';
-
-
+import Footer from './components/Footer/footer.js';
 
 import {
+  BrowserRouter as Router,
   HashRouter,
   Route,
   Link,
-  Switch
+  Switch,
+  NavLink
 } from 'react-router-dom';
 
 class App extends Component {
   constructor(props,context){
     super(props);
     this.state = {
-      isLoading : true
+      isLoading : false
     }
   }
   componentDidMount() {
@@ -30,60 +31,62 @@ class App extends Component {
         isLoading: false
     })
   }
+
+  setNav() {
+  }
+
   render() {
-    var loadingClass = classNames({
-        "isShow" : this.state.isLoading,
-        "loading": false
+    const loadingClass = classNames("loading-wrapper", {
+        "isShow" : false
     });
+    const musicIcon = classNames('header-nav-icon', {
+        'music' : true
+    })
+    const friendsIcon = classNames('header-nav-icon', {
+        'friends' : true
+    })
+    const listIcon = classNames('header-nav-icon', {
+        'list' : true
+    })
     return (
-      <div className="App">
-        <HashRouter>
-            <div className="wrapper">
-                <img src={loading} className={ loadingClass } />
-                <div className="header">
-                    <div class="func">
-                        <Link to="/sidebar">
-                            <div class="burger"></div>
-                            <div class="burger"></div>
-                            <div class="burger"></div>
-                        </Link>
+        <div className="App">
+            <Router>
+                <div className="wrapper">
+                    <div className={ loadingClass }>
+                        <img src={loading} className="isLoading"/>
                     </div>
-                    <div class="header-nav">
-                        <Link to="/musicList">
-                            <i class="music header-nav-icon">
-                                M
+                    <div className="header">
+                        <div className="func">
+                            <div className="burger-box">
+                                <div className="burger"></div>
+                                <div className="burger"></div>
+                                <div className="burger"></div>
+                            </div>
+                        </div>
+                        <div className="header-nav">
+                            <i className={ musicIcon } onClick={this.setNav}>
+                                <NavLink to="/musicList" activeClassName="musAct"></NavLink>
                             </i>
-                        </Link>
-                        <Link to="/Player">
-                            <i class="list header-nav-icon">
-                                L
+                            <i className={ listIcon }>
+                                <NavLink to="/Player" activeClassName="listAct"></NavLink>
                             </i>
-                        </Link>
-                        <Link to="/Personal">
-                            <i class="friends header-nav-icon">
-                              P 
+                            <i className={ friendsIcon }>
+                                <NavLink to="/Personal" activeClassName="friAct"></NavLink>
                             </i>
-                        </Link>
-                        
+                        </div>
+                        <div className="search">
+                        </div> 
                     </div>
-                    <div class="search">
-                        S
-                    </div> 
+                    <div className="content">
+                        <Route exact path="/musicList" component={ MusicList } />
+                        <Route path="/Personal" component={ Personal } />
+                        <Route path="/Player" component={ Player } />
+                    </div>
+                    {/* <Footer />
+                    <Sidebar /> */}
                 </div>
-                <div className="content">
-                    <Route exact path="/musicList" component={ MusicList } />
-                    <Route path="/Personal" component={ Personal } />
-                    <Route path="/Player" component={ Player } />
-                </div>
-                <div className="footer">
-                  F
-                </div>
-                <Sidebar />
-            </div>
-            
-        </HashRouter>
-        
-      </div>
+            </Router>
+        </div>
     );
   }
 }
