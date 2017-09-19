@@ -2,7 +2,7 @@
 import ReactDom from 'react-dom';
 import React from 'react';
 import App from './App';
-
+import Calculator from "./test";
 ReactDom.render(
     <App />,
     document.getElementById('content')

@@ -9,7 +9,7 @@ class MusicItem extends Component {
         return (
         <div className="MusicItem">
             <img src={this.props.imgUrl} className="musicImg"/>
-            <p>{this.props.desc}</p>
+            <p className="desc">{this.props.desc}</p>
         </div>
         );
     }

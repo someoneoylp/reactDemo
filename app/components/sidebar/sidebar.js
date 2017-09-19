@@ -5,6 +5,7 @@ const node = {
   title: '推荐',  
   key: '0' ,
   level:'level1',
+  component: "/tuijian",
   icon : "",
   child:[  
       {
@@ -16,27 +17,32 @@ const node = {
             {  
               title: '推荐', 
               key: '0-0-0',
-              level:'level3'
+              level:'level3',
+              component: "/RecommendMus",
             }, 
             {  
               title: '排行榜', 
               key: '0-0-1',
-              level:'level3'
+              level:'level3',
+              component: "/RankingList",
             },  
             {  
               title: '歌单', 
               key: '0-0-2',
-              level:'level3'
+              level:'level3',
+              component: "/PlayList",
             }, 
             {  
               title: '主播电台', 
               key: '0-0-3',
-              level:'level3'
+              level:'level3',
+              component: "/RadioMus",
             }, 
             {  
               title: '最新音乐', 
               key: '0-0-4',
-              level:'level3'
+              level:'level3',
+              component: "/NewMus",
             }, 
         ]
       },  
@@ -45,6 +51,7 @@ const node = {
         key: '0-1',
         level:'level2',
         icon: "fa-envira",
+        component: "/PrivateFM",
       },  
       {
         title: 'MV', 
@@ -55,17 +62,20 @@ const node = {
           {
             title: 'MV精选', 
             key: '0-2-0',
-            level:'level3'
+            level:'level3',
+            component: "/HighMv",
           },
           {
             title: '网易独家', 
             key: '0-2-1',
-            level:'level3'
+            level:'level3',
+            component: "/SoleWy",
           },
           {
             title: '全部MV', 
             key: '0-2-2',
-            level:'level3'
+            level:'level3',
+            component: "/AllMv",
           }
         ]
 
@@ -75,6 +85,7 @@ const node = {
         key: '0-3',
         level:'level2',
         icon: "fa-users",
+        component: "/Friends",
       }, 
   ]
 }
@@ -90,13 +101,10 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
-        {/* 推荐 */}
         <Tree 
            treeList = {node}
            open = {this.state.open}  
         /> 
-        {/* 我的音乐 创建歌单 */}
-        {/* 下载的音乐 */}
       </div>
     );
   }

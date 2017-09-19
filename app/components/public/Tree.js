@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-
+import {
+    BrowserRouter as Router,
+    HashRouter,
+    Route,
+    Link,
+    Switch,
+    NavLink
+  } from 'react-router-dom';
 class Tree extends Component {
 
     constructor(props){
@@ -14,17 +21,28 @@ class Tree extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.treeList)
     }
 
     handleClick(e) {
         let targetHeihgt = e.target.parentNode.lastChild.style.height;
         let ulHeight = e.target.parentNode.lastChild.childNodes.length;
         e.target.parentNode.lastChild.style.height = targetHeihgt === "0px" ? ulHeight*24+"px" : "0";
-        if(e.target.nodeName == "SPAN"){
+        if(e.target.nodeName == "SPAN" && e.target.nextElementSibling){
              e.target.nextElementSibling.style.transform = e.target.nextElementSibling.style.transform === "rotate(90deg)" ? "rotate(0deg)" : "rotate(90deg)"
-        }else{
+        }else if(e.target.style){
             e.target.style.transform = e.target.style.transform === "rotate(90deg)" ? "rotate(0deg)" : "rotate(90deg)"
+        }
+    }
+
+    itemTitle(item){
+        if(item.component){
+            return (<NavLink to={ item.component } activeClassName="activeItem">
+                         <span onClick={this.handleClick.bind(this)}>{item.title}</span>
+                     </NavLink>)
+        }else{
+            return (
+                 <span onClick={this.handleClick.bind(this)}>{item.title}</span>
+            )
         }
     }
 
@@ -44,9 +62,11 @@ class Tree extends Component {
                     marginTop  : level == "level2" ? "10px" : "20px"
                 }
                 let isShow = item.icon;
-                return  <li className={item.level} style={groupStyle}>
+
+                return  <li className={item.level} style={groupStyle} key={key}>
                             <i className={iconClass} aria-hidden="true"></i>
-                            <span onClick={this.handleClick.bind(this)}>{item.title}</span><i className={iconChevron} aria-hidden="true" onClick={this.handleClick.bind(this)}></i>
+                            {this.itemTitle(item)}
+                            <i className={iconChevron} aria-hidden="true" onClick={this.handleClick.bind(this)}></i>
                             {this.treeItemCroup(item, item.key, item.level, isShow)}
                         </li>
             })

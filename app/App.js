@@ -32,50 +32,27 @@ class App extends Component {
     })
   }
 
-  setNav() {
-  }
-
   render() {
     const loadingClass = classNames("loading-wrapper", {
         "isShow" : false
     });
-    const musicIcon = classNames('header-nav-icon', {
-        'music' : true
-    })
-    const settingIcon = classNames('header-nav-icon','fa', 'fa-cog','setting-icon')
-    const searchIcon =  classNames('fa','fa-search','search-icon')
     return (
         <div className="App">
+            {/* basename: 为所有的页面添加一个基准的URL */}
             <Router>
                 <div className="wrapper">
                     <div className={ loadingClass }>
                         <img src={loading} className="isLoading"/>
                     </div>
-                    <div className="header">
-                        <div className="header-nav">
-                            <div className="header-logo">
-                                <i className={ musicIcon } onClick={this.setNav}>
-                                    <NavLink to="/musicList" activeClassName="musAct"></NavLink>
-                                </i>
-                                网易云音乐
-                            </div>
-                            <div className="header-search">
-                                <i className={searchIcon} aria-hidden="true"></i>
-                                <input type="text" />
-                            </div> 
-                            <div className="header-setting">
-                                <i className={ settingIcon } aria-hidden="true">
-                                    <NavLink to="/Player" activeClassName="listAct"></NavLink>
-                                </i>
-                            </div>
-                        </div>
-                    </div>
+                    <Header />
                     <div className="content">
                         <Sidebar />
                         <div className="music-content">
-                            <Route exact path="/musicList" component={ MusicList } />
-                            <Route path="/Personal" component={ Personal } />
-                            <Route path="/Player" component={ Player } />
+                            <Switch>
+                                <Route exact path="/RecommendMus" component={ MusicList } />
+                                <Route path="/Personal" component={ Personal } />
+                                <Route path="/Player" component={ Player } />
+                            </Switch>
                         </div>
                     </div>
                 </div>

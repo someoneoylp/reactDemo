@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-const winW =  document.body.clientWidth //屏幕宽度
-
+const winW =  800 //屏幕宽度
 class Slider extends Component {
   constructor(props) {
     super(props),
@@ -48,8 +47,7 @@ class Slider extends Component {
   }
   render() {
     const style = {
-      marginLeft: -this.state.current*winW+"px",
-      width: winW*this.props.items.length
+      marginLeft: -this.state.current*winW+"px"
     }
     return (
       <div className="slider">

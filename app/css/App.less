@@ -74,6 +74,31 @@
         vertical-align: middle;
       }
     }
+    .goback{
+      flex: 2;
+      &:first-child{
+        border-radius: 2px 0 0 2px;
+      }
+      &:last-child{
+        border-left: 0;
+        border-radius: 0 2px 2px 0;
+      }
+      i{
+        float: right;
+        position: relative;
+        width: 22px;
+        height: 22px;
+        right: 13px;
+        top: 24px;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 22px;
+        border: 1px solid #000000;
+        color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
     .header-search{
       flex: 5;
       position: relative;
@@ -82,13 +107,12 @@
         height: 24px;
         border-radius: 10px;
         margin-top: 20px;
-        margin-left: 150px;
         padding-left: 30px;
       }
       .search-icon{
         color: #cccccc;
         position: absolute;
-        left: 160px;
+        left: 10px;
         top: 24px;
       }
     }
@@ -128,30 +152,28 @@
   }
 }
 .music-nav{
+  position: relative;
 	display: flex;
-	height: 35px;
+	height: 50px;
   background: #FCFDFD;
+  z-index: 100;
   a{
     text-decoration: none;
     color: #000000;
-  }
-	.recommend,.ranking-list{
-		flex: 1;
+    flex: 1;
 		text-align: center;
-		line-height: 35px;
+		line-height: 60px;
 		font-size: 14px;
 		cursor: pointer;
-		box-sizing:border-box;
-	}	
-	.router-link-active,.isActive{
-		color: #B72712;
-		display: block;
-		border-bottom: 2px solid #B72712;
-	}
+    box-sizing:border-box;
+    border-bottom:2px solid #cccccc;
+  }
+  .musicNavActive{
+    color: #b72712 !important;
+    border-bottom: 2px solid #b72712
+  }
 }
-.musicNavActive{
-  color: #b72712 !important;
-}
+
 
 //轮播图组件部分
 .slider{
@@ -180,13 +202,13 @@
       overflow: hidden;
       padding: 0;
       margin: 0;
-      height:150px;
+      height:300px;
       transition: all .3s;
       li{
         float: left;
         height:150px;
         img{
-          width:375px;
+          width:800px;
           height:100%;
         }
       }
@@ -214,22 +236,98 @@
   }
 }
 
-//个性推荐部分
-.MusicItem{
-  width: 46%;
-  height: 200px;
-  display: inline-block;
-  margin: 10px 2%;
-  img{
+.slider2{
     width: 100%;
-    height: 160px;
+    height:240px;
+    background: #f9f9f9;
+    .arrow{
+        position: relative;
+        width: 27%;
+        height: 100%;
+        z-index: 100;
+        cursor: pointer;
+    }
+    .left{
+        float: left;
+    }
+    .right{
+        float: right;
+    }
+    .slider2-container{
+        width: 50%;
+        height: 100%;
+        position: relative;
+        perspective: 1800px;
+        margin: 0 auto;
+        .image-box{
+          position: absolute;
+          width: 62%;
+          height: 100%;
+          left: 20%;
+          top: 18%;
+          transform-style: preserve-3d; 
+          transition: all .6s;
+          li{
+              display: block;
+              position: absolute;
+              width: 100%;
+              height: 60%;
+              backface-visibility:hidden;
+              box-shadow: 0 0 10px #000000;
+            img{
+                width: 100%;
+                height: 100%;
+                -webkit-box-reflect: below 0 -webkit-linear-gradient(top,rgba(250,250,250,0),rgba(250,250,250,.0) 88%,rgba(250,250,250,0.3));
+                box-reflect: below;
+            }
+          }
+      }
+    }
+    .dots{
+      width: 1000%;
+      height: 30px;
+      margin-top: -30px;
+      text-align: center;
+      ul {
+          li{
+            width: 10px;
+            height: 10px;
+            background: #000000;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 0 10px 0 0;
+            opacity: 0.5;
+          }
+          .dot-active{
+            background: #B72711;
+          }
+      }
+    }
+}
+//个性推荐部分
+.recommend-item{
+  display: flex;
+  .MusicItem{
+    flex: 1;
+    height: 200px;
+    display: inline-block;
+    margin: 10px 2%;
+    text-align: center;
+    img{
+      width: 90%;
+      height: 80%;
+    }
   }
 }
+
 
 .content{
   display: flex;
   width: 100%;
 }
+
+
+
 //sidebar start
 .sidebar{
   flex: 1;
@@ -242,6 +340,9 @@
   margin: 20px 0 0 14px;
   li{
     cursor: pointer;
+  }
+  .activeItem{
+    color: #B72711;
   }
   .level2{
     position: relative;
@@ -272,7 +373,36 @@
 // content start
 .music-content{
   flex: 4;
+  .MusicList{
+    height: 610px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .desc{
+      text-align: left;
+      font-size: 14px;
+      padding: 2px 0 0 10px;
+    }
+  }
 }
 
 // content end
 
+// tab content start
+.tabLink{
+  display: flex;
+  li{
+    position: relative;
+    flex: 1;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  .activeLink{
+    color: #b72712;
+    border-bottom: 2px solid #b72712;
+  }
+}
+// tab content end

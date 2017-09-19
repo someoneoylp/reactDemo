@@ -1,54 +1,48 @@
 import React, { Component } from 'react';
-import MusicList from '../content/musicList.js';
-import Personal from '../content/personal.js';
-import Player from '../content/player.js';
+import classNames from 'classnames';
+
 import {
-  HashRouter,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
+    BrowserRouter as Router,
+    HashRouter,
+    Route,
+    Link,
+    Switch,
+    NavLink
+  } from 'react-router-dom';
 
 
 class Header extends Component {
   render() {
+    const musicIcon = classNames('header-nav-icon', {
+        'music' : true
+    });
+    const settingIcon = classNames('header-nav-icon','fa', 'fa-cog','setting-icon')
+    const searchIcon =  classNames('fa','fa-search','search-icon')
     return (
         <HashRouter>
             <div className="header">
-                <div class="func">
-                    <Link to="/sidebar">
-                        <div class="burger"></div>
-                        <div class="burger"></div>
-                        <div class="burger"></div>
-                    </Link>
+            <div className="header-nav">
+                <div className="header-logo">
+                    <i className={ musicIcon } onClick={this.setNav}>
+                        <NavLink to="/musicList" activeClassName="musAct"></NavLink>
+                    </i>
+                    网易云音乐
                 </div>
-                <div class="header-nav">
-                    <Link to="/musicList">
-                        <i class="music header-nav-icon">
-                            M
-                        </i>
-                    </Link>
-                    <Link to="/Player">
-                        <i class="list header-nav-icon">
-                            L
-                        </i>
-                    </Link>
-                    <Link to="/Personal">
-                        <i class="friends header-nav-icon">
-                           P 
-                        </i>
-                    </Link>
-                    
+                <div className="goback">
+                    <i className="fa fa-chevron-right" id="next" aria-hidden="true"></i>
+                    <i className="fa fa-chevron-left" id="previous" aria-hidden="true"></i>
                 </div>
-                <div class="search">
-                    S
+                <div className="header-search">
+                    <i className={searchIcon} aria-hidden="true"></i>
+                    <input type="text" />
                 </div> 
-                <div>
-                    <Route exact path="/musicList" component={MusicList} />
-                    <Route path="/Personal" component={Personal} />
-                    <Route path="/Player" component={Player} />
+                <div className="header-setting">
+                    <i className={ settingIcon } aria-hidden="true">
+                        <NavLink to="/Player" activeClassName="listAct"></NavLink>
+                    </i>
                 </div>
             </div>
+        </div>
         </HashRouter>
     );
   }
