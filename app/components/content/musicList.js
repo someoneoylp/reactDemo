@@ -85,6 +85,7 @@ class MusicList extends Component {
                         sliderSetting = { sliderSetting }
                     /> 
                     <TabsControl initTab = {1}>
+                      {/* initTab: 初始化的tab内容 */}
                         <div name="个性推荐">
                             <Recommend key="1" />
                         </div>

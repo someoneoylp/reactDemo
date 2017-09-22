@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import createHistory from 'history/createBrowserHistory'
 
+const history = createHistory();
 import {
     BrowserRouter as Router,
     HashRouter,
@@ -29,8 +31,8 @@ class Header extends Component {
                     网易云音乐
                 </div>
                 <div className="goback">
-                    <i className="fa fa-chevron-right" id="next" aria-hidden="true"></i>
-                    <i className="fa fa-chevron-left" id="previous" aria-hidden="true"></i>
+                    <i className="fa fa-chevron-right" id="back" aria-hidden="true" onClick={history.goForward}></i>
+                    <i className="fa fa-chevron-left" id="forward" aria-hidden="true" onClick={history.goBack}></i>
                 </div>
                 <div className="header-search">
                     <i className={searchIcon} aria-hidden="true"></i>

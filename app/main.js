@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import React from 'react';
 import App from './App';
 import Calculator from "./test";
+// import App from './routerTest';
 ReactDom.render(
     <App />,
     document.getElementById('content')

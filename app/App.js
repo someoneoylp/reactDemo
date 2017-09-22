@@ -6,9 +6,14 @@ import MusicList from './components/content/musicList.js';
 import Personal from './components/content/personal.js';
 import Player from './components/content/player.js';
 import Sidebar from './components/sidebar/sidebar.js';
+import DragComp from './components/public/DragComp';
 import classNames from 'classnames';
 import loading from './image/loading.gif';
 import Footer from './components/Footer/footer.js';
+import createHistory from 'history/createBrowserHistory'
+
+const history = new createHistory()
+history.push('/RecommendMus');
 
 import {
   BrowserRouter as Router,
@@ -23,8 +28,10 @@ class App extends Component {
   constructor(props,context){
     super(props);
     this.state = {
-      isLoading : false
+      isLoading : false,
+      showLyric: false
     }
+    this.taggerLyric = this.taggerLyric.bind(this)
   }
   componentDidMount() {
     this.setState({
@@ -32,10 +39,23 @@ class App extends Component {
     })
   }
 
+  taggerLyric(){
+    this.setState({
+        showLyric : !this.state.showLyric
+    })
+  }
+
   render() {
     const loadingClass = classNames("loading-wrapper", {
         "isShow" : false
     });
+    const showLyric = classNames({
+        "isShow" : this.state.showLyric
+    });
+    const dragCompStyle = {
+        display : this.state.showLyric ? 'block' : 'none',
+        top: '600px'
+    }
     return (
         <div className="App">
             {/* basename: 为所有的页面添加一个基准的URL */}
@@ -55,6 +75,13 @@ class App extends Component {
                             </Switch>
                         </div>
                     </div>
+                    <Footer taggerLyric = {this.taggerLyric}/>
+                    <DragComp dragCompStyle = {dragCompStyle}>
+                        <div className="lyric-box">
+                            <i className="closeLyric" onClick={this.taggerLyric}>x</i>
+                            <p className="lyric">You say you wander your own land</p>
+                        </div>
+                    </DragComp>
                 </div>
             </Router>
         </div>
