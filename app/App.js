@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import loading from './image/loading.gif';
 import Footer from './components/Footer/footer.js';
 import createHistory from 'history/createBrowserHistory'
+import LoadingComp from './components/public/loading.js'
 
 const history = new createHistory()
 history.push('/RecommendMus');
@@ -58,12 +59,10 @@ class App extends Component {
     }
     return (
         <div className="App">
+            <LoadingComp isLoading={this.state.isLoading}/>
             {/* basename: 为所有的页面添加一个基准的URL */}
             <Router>
                 <div className="wrapper">
-                    <div className={ loadingClass }>
-                        <img src={loading} className="isLoading"/>
-                    </div>
                     <Header />
                     <div className="content">
                         <Sidebar />

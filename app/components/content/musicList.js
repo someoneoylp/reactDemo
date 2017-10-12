@@ -4,7 +4,7 @@ import Recommend from './recommend.js';
 import RankingList from './rankingList.js';
 import NewSong from './NewSong.js';
 import proxy from 'http-proxy-middleware';
-import Slider from '../public/Slider2.js';
+import Carousel from '../public/Carousel2.js';
 import Hot from './hot.js'
 import TabsControl from '../public/TabsControl'
 
@@ -80,7 +80,7 @@ class MusicList extends Component {
         <div className="MusicList">
             <Router>
                 <div className="music-box">
-                    <Slider 
+                    <Carousel 
                         items = { IMAGE_DATA }
                         sliderSetting = { sliderSetting }
                     /> 

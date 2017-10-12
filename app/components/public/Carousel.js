@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 const winW =  800 //屏幕宽度
-class Slider extends Component {
+class Carousel extends Component {
   constructor(props) {
     super(props),
     this.state = {
@@ -28,7 +28,6 @@ class Slider extends Component {
           }
 	     }, speed)
     }
-    
   }
 
   turn(n) {
@@ -91,7 +90,7 @@ class Slider extends Component {
   }
 }
 
-Slider.defaultProps = {
+Carousel.defaultProps = {
   items: [],
   sliderSetting: {
     speed: 2000,  
@@ -100,4 +99,4 @@ Slider.defaultProps = {
     autoplay: true  
   }
 };
-export default Slider;
+export default Carousel;

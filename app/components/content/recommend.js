@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {getData, postData} from '../../api/fetchData.js'
 import MusicItem from '../public/musicItem.js'
-import Slider from '../public/Slider.js';
 
 
 class Recommend extends Component {
